@@ -18,9 +18,8 @@ namespace MusicPortalConsoleApp {
             var json = JsonConvert.SerializeObject(model);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
             var response = await client.PostAsync("api/track/console-upload", content);
-            Console.WriteLine("\n\nhttp.post, status: " + response.StatusCode);
-            Console.WriteLine("\n\nheaders: " + response.Headers);
-            Console.WriteLine("\n\ncontent: " + response.Content);
+            Console.WriteLine("\nhttp.post, status: " + response.StatusCode);
+            Console.WriteLine("\nheaders: " + response.Headers);
         }
     }
 }

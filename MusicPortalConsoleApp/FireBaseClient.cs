@@ -33,6 +33,7 @@ namespace MusicPortalConsoleApp {
                 .Child(rand.Next().ToString() + fileName)
                 .PutAsync(stream);
 
+            Console.WriteLine();
             task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
             return await task;
         }
