@@ -34,7 +34,13 @@ namespace MusicPortalConsoleApp {
                 .PutAsync(stream);
 
             Console.WriteLine();
-            task.Progress.ProgressChanged += (s, e) => Console.WriteLine($"Progress: {e.Percentage} %");
+            bool processEnded = false;
+            task.Progress.ProgressChanged += (s, e) => {
+                if (!processEnded) {
+                    Console.WriteLine($"Progress: {e.Percentage} %");
+                    processEnded = e.Percentage == 100;
+                }
+            };
             return await task;
         }
     }
