@@ -4,7 +4,7 @@ using System.IO;
 using System.Threading.Tasks;
 using Firebase.Auth;
 
-namespace MusicPortalConsoleApp {
+namespace MusicPortalConsoleApp.Clients {
     class FireBaseClient {
         private static Random rand = new Random();
         private readonly string apiKey = @"AIzaSyAKL84VNKWSiihosvSTD1z6vc44lAeAhWI";
@@ -33,14 +33,6 @@ namespace MusicPortalConsoleApp {
                 .Child(rand.Next().ToString() + fileName)
                 .PutAsync(stream);
 
-            Console.WriteLine();
-            bool processEnded = false;
-            task.Progress.ProgressChanged += (s, e) => {
-                if (!processEnded) {
-                    Console.WriteLine($"Progress: {e.Percentage} %");
-                    processEnded = e.Percentage == 100;
-                }
-            };
             return await task;
         }
     }
